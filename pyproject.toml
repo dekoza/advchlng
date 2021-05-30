@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "swapi_data"
+version = "0.1.0"
+description = "Sample project for handling SWAPI data."
+authors = ["Dominik Kozaczko <dominik@kozaczko.info>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^3.2.3"
+requests = "^2.25.1"
+petl = {version = "^1.7.4", extras = ["pandas", "numpy", "remote"]}
+pendulum = "^2.1.2"
+python-decouple = "^3.4"
+psycopg2-binary = "^2.8.6"
+whitenoise = {version = "^5.2.0", extras = ["brotli"]}
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.24.0"
+pre-commit = "^2.13.0"
+pytest = "^6.2.4"
+pytest-django = "^4.3.0"
+black = "^21.5b1"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | build
+    | dist
+    | migrations
+  )/
+)
+'''
+
+[tool.isort]
+skip_glob = ["*/migrations/*.py", "cdk.out/*"]
+profile = "black"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

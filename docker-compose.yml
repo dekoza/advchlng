@@ -1,0 +1,36 @@
+version: "3.3"
+
+volumes:
+  htvbe_data: {}
+  node_modules:
+
+services:
+  django:
+    build:
+      context: .
+    depends_on:
+      - postgres
+      - mailhog
+    volumes:
+      - ./swapi_data:/app
+    command: /start.sh
+    entrypoint: /entrypoint.sh
+    restart: on-failure
+    env_file: .env
+    ports:
+      - "8000:8000"
+
+  postgres:
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - htvbe_data:/var/lib/postgresql/data
+    env_file: .env
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+    logging:
+      driver: none
