@@ -84,3 +84,5 @@ env.json
 
 cdk.out
 .terraform*
+
+data_vault

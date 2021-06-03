@@ -8,11 +8,13 @@ authors = ["Dominik Kozaczko <dominik@kozaczko.info>"]
 python = "^3.9"
 Django = "^3.2.3"
 requests = "^2.25.1"
-petl = {version = "^1.7.4", extras = ["pandas", "numpy", "remote"]}
+petl = "^1.7.4"
 pendulum = "^2.1.2"
 python-decouple = "^3.4"
 psycopg2-binary = "^2.8.6"
 whitenoise = {version = "^5.2.0", extras = ["brotli"]}
+jsonlines = "^2.0.0"
+django-tables2 = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.24.0"
@@ -20,6 +22,9 @@ pre-commit = "^2.13.0"
 pytest = "^6.2.4"
 pytest-django = "^4.3.0"
 black = "^21.5b1"
+ipdb = "^0.13.9"
+requests-mock = "^1.9.3"
+typer = "^0.3.2"
 
 [tool.black]
 line-length = 100

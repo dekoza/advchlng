@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block body %}
+    <h2><a href="{% url 'collection-detail' object.pk %}">{{ object.filename }}</a></h2>
+
+    {% for field in fields %}
+        {% if field.name in chosen %}
+            <b><a href="{{ field.url }}">{{ field.name }}</a></b>
+        {% else %}
+            <a href="{{ field.url }}">{{ field.name }}</a>
+        {% endif %}
+    {% endfor %}
+
+    <table>
+        {% for item in data %}
+            <tr>
+                {% if forloop.first %}
+
+                    {% for name in item %}
+                        <th>{{ name }}</th>{% endfor %}
+
+                {% else %}
+                    {% for name in item %}
+                        <td>{{ name }}</td>{% endfor %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

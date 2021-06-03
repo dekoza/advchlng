@@ -1,21 +1,20 @@
-"""swapi_data URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from apps.swexplorer.views import (
+    CollectionDetailView,
+    CollectionFetchView,
+    CollectionInsightView,
+    CollectionListView,
+)
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("collections/", CollectionListView.as_view(), name="collection-list"),
+    path("collections/fetch/", CollectionFetchView.as_view(), name="collection-fetch"),
+    path("collections/<int:pk>/", CollectionDetailView.as_view(), name="collection-detail"),
+    path(
+        "collections/<int:pk>/insight/", CollectionInsightView.as_view(), name="collection-insight"
+    ),
+    path("", RedirectView.as_view(pattern_name="collection-list")),
 ]

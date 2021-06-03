@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block body %}
+    <h2>{{ object.filename }}</h2>
+
+    <table>
+        {% for item in data %}
+            <tr>
+                {% if forloop.first %}
+                    <h4>Click on header name to aggregate</h4>
+                    {% for name in item %}
+                        <th>
+                            <a href="{% url 'collection-insight' object.pk %}?chosen={{ name }}">{{ name }}</a>
+                        </th>
+                    {% endfor %}
+                {% else %}
+                    {% for name in item %}
+                        <td>{{ name }}</td>{% endfor %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <a href="?load={{ next_amount }}">Load more</a>
+{% endblock %}

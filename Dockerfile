@@ -14,7 +14,8 @@ COPY ./pyproject.toml /
 RUN pip install --upgrade pip
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
-RUN poetry install --no-dev
+RUN poetry install
+# TODO: add `--no-dev` for production
 
 # upload scripts
 COPY ./swapi_data/scripts/entrypoint.sh ./swapi_data/scripts/start.sh ./swapi_data/scripts/gunicorn.sh ./swapi_data/scripts/wait-for-it.sh /
