@@ -2,9 +2,9 @@
 {% load render_table from django_tables2 %}
 
 {% block body %}
-    <h2>{{ object.filename }}</h2>
+    <h2>{{ object.filename }} <small>fetched on {{ object.date }}</small></h2>
 
-    <table>
+    <table class="table table-striped">
         {% for item in data %}
             <tr>
                 {% if forloop.first %}
@@ -22,5 +22,5 @@
         {% endfor %}
     </table>
 
-    <a href="?load={{ next_amount }}">Load more</a>
+    <a href="?load={{ next_amount }}" class="btn btn-primary">Load more</a>
 {% endblock %}

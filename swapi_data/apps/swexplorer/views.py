@@ -1,3 +1,4 @@
+from typing import Dict, List
 from urllib.parse import urlencode
 
 import django_tables2 as tables
@@ -30,7 +31,7 @@ class CollectionInsightView(DetailView):
     model = SwapiCollection
     template_name = "swexplorer/swapicollection_insight.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> Dict:
         context = super().get_context_data(**kwargs)
         chosen = self.request.GET.getlist("chosen", None)
         key = chosen[0] if len(chosen) == 1 else chosen
@@ -39,7 +40,7 @@ class CollectionInsightView(DetailView):
         context["data"] = self.object.get_data().cut(*chosen).aggregate(key=key, aggregation=len)
         return context
 
-    def _resolve_fields(self, chosen):
+    def _resolve_fields(self, chosen) -> List:
         chosen = set(chosen)
         fields = petl.header(self.object.get_data())
         prepared_fields = []

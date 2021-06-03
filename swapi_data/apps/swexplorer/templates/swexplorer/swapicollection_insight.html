@@ -2,17 +2,18 @@
 {% load render_table from django_tables2 %}
 
 {% block body %}
-    <h2><a href="{% url 'collection-detail' object.pk %}">{{ object.filename }}</a></h2>
+    <h2><a href="{% url 'collection-detail' object.pk %}">{{ object.filename }}</a> (back)</h2>
 
     {% for field in fields %}
         {% if field.name in chosen %}
-            <b><a href="{{ field.url }}">{{ field.name }}</a></b>
+            <b><a href="{{ field.url }}" class="btn btn-primary">{{ field.name }}</a></b>
         {% else %}
-            <a href="{{ field.url }}">{{ field.name }}</a>
+            <a href="{{ field.url }}" class="btn btn-default">{{ field.name }}</a>
         {% endif %}
     {% endfor %}
 
-    <table>
+    <table class="table table-striped">
+    <tbody>
         {% for item in data %}
             <tr>
                 {% if forloop.first %}
@@ -25,6 +26,6 @@
                         <td>{{ name }}</td>{% endfor %}
                 {% endif %}
             </tr>
-        {% endfor %}
+        {% endfor %}</tbody>
     </table>
 {% endblock %}

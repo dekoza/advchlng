@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>SW API Collection Explorer</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-    <h1>Star Wars <small>Explorer</small></h1>
-    <a href="{% url 'collection-list' %}">Collections</a>
+<h1 class="bg-warning">Star Wars <small>Explorer</small></h1>
+<a href="{% url 'collection-list' %}">Go to Collections list</a>
+<div class="container-fluid">
     {% block body %}{% endblock %}
+</div>
 </body>
 </html>
