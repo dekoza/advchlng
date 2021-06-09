@@ -139,3 +139,7 @@ SWAPI_DATA_VAULT = BASE_DIR / "data_vault"
 
 # TODO: handle this in more sane way
 Path(SWAPI_DATA_VAULT).mkdir(parents=True, exist_ok=True)
+
+MIGRATION_MODULES = {
+    "auth": "apps.auth.migrations",
+}
