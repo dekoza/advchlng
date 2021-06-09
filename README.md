@@ -7,6 +7,9 @@
 
 As `swapi.co` is no longer alive, `swapi.dev` is used as replacement - configurable via settings.
 
+Default admin credentials can be set via `DEFAULT_SUPERUSER_USERNAME` and `DEFAULT_SUPERUSER_PASSWORD`
+ENV params (set them inside `.env` file). The default values are `admin` and `admin`.
+
 TODO:
 
 1. Use celery - fetching data should be a task
